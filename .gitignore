@@ -40,3 +40,4 @@ out/
 # Real secret file is never committed; the .example template is.
 application-secret.properties
 
+uploads/
