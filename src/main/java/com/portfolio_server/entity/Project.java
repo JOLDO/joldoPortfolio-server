@@ -15,15 +15,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "team_project")
+@Table(name = "project")
 @Getter
 @Setter
 @NoArgsConstructor
-public class TeamProject {
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    /** 프로젝트 종류(team/personal/company). 요청 body가 아니라 URL 경로에서 받아 저장한다. */
+    @Column(nullable = false, length = 20)
+    private String category;
+
+    /** 공개 여부. false면 "작성 중(비공개)" 상태 — 로그인 안 한 방문자에게는 목록/상세에서 안 보인다. */
+    // columnDefinition에 default true를 넣어, 기존 행들은 컬럼 추가 시 자동으로 공개(true)로 채워진다.
+    @Column(nullable = false, columnDefinition = "boolean not null default true")
+    private boolean published;
 
     @Column(nullable = false)
     private String title;

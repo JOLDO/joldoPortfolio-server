@@ -1,25 +1,25 @@
 package com.portfolio_server.dto;
 
-import com.portfolio_server.entity.TeamProject;
+import com.portfolio_server.entity.Project;
 import java.time.Instant;
 
-/** Full view for the detail page, including the editor content body. */
-public record TeamProjectDetailResponse(
+/** Lightweight view for the list page (no full content body). */
+public record ProjectSummaryResponse(
         Long id,
         String title,
         String summary,
-        String content,
         String thumbnailUrl,
+        boolean published,
         Instant createdAt,
         Instant updatedAt) {
 
-    public static TeamProjectDetailResponse from(TeamProject p) {
-        return new TeamProjectDetailResponse(
+    public static ProjectSummaryResponse from(Project p) {
+        return new ProjectSummaryResponse(
                 p.getId(),
                 p.getTitle(),
                 p.getSummary(),
-                p.getContent(),
                 p.getThumbnailUrl(),
+                p.isPublished(),
                 p.getCreatedAt(),
                 p.getUpdatedAt());
     }
