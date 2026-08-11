@@ -6,6 +6,8 @@ import java.time.Instant;
 /** Lightweight view for the list page (no full content body). */
 public record ProjectSummaryResponse(
         Long id,
+        Long groupId,
+        String part,
         String title,
         String summary,
         String thumbnailUrl,
@@ -16,6 +18,8 @@ public record ProjectSummaryResponse(
     public static ProjectSummaryResponse from(Project p) {
         return new ProjectSummaryResponse(
                 p.getId(),
+                p.getGroupId(),
+                p.getPart(),
                 p.getTitle(),
                 p.getSummary(),
                 p.getThumbnailUrl(),

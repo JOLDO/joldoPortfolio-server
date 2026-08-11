@@ -65,6 +65,8 @@ public class ProjectService {
     }
 
     private void apply(Project project, ProjectRequest request) {
+        project.setGroupId(request.groupId());   //null이면 그룹에 안 묶인 낱개 글
+        project.setPart(request.part());
         project.setTitle(request.title());
         project.setSummary(request.summary());
         project.setContent(request.content());

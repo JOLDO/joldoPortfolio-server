@@ -5,6 +5,8 @@ package com.portfolio_server.dto;
  * published: true=공개, false=작성 중(비공개). 값이 없으면(null) 공개로 처리한다.
  */
 public record ProjectRequest(
+        Long groupId,
+        String part,
         String title,
         String summary,
         String content,

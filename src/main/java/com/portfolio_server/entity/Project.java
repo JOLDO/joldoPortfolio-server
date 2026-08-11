@@ -34,6 +34,17 @@ public class Project {
     @Column(nullable = false, columnDefinition = "boolean not null default true")
     private boolean published;
 
+    /**
+     * 소속 프로젝트 그룹 id (예: 팀 카테고리의 "1차"). null이면 그룹에 안 묶인 낱개 글.
+     * @ManyToOne 매핑 대신 id만 들고 있는다 — 글을 읽을 때 그룹까지 같이 끌고 올 일이 없어서.
+     */
+    @Column(nullable = true)
+    private Long groupId;
+
+    /** 그룹 안에서의 담당 파트. 예) "웹", "앱", "서버". 그룹이 없으면 비어 있어도 된다. */
+    @Column(nullable = true, length = 30)
+    private String part;
+
     @Column(nullable = false)
     private String title;
 

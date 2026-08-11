@@ -18,4 +18,12 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     List<Project> findAllByCategoryAndPublishedTrueOrderByCreatedAtDesc(String category);
 
     Optional<Project> findByIdAndCategoryAndPublishedTrue(Long id, String category);
+
+    // 그룹 상세(모달)용: 그 그룹에 속한 글만. 파트 순서가 흔들리지 않게 오래된 순으로 고정한다.
+    List<Project> findAllByCategoryAndGroupIdOrderByCreatedAtAsc(String category, Long groupId);
+
+    List<Project> findAllByCategoryAndGroupIdAndPublishedTrueOrderByCreatedAtAsc(String category, Long groupId);
+
+    // 그룹을 지울 때, 거기 묶여 있던 글들의 groupId를 비우려고 쓴다(글은 지우지 않는다).
+    List<Project> findAllByGroupId(Long groupId);
 }

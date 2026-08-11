@@ -6,6 +6,8 @@ import java.time.Instant;
 /** Full view for the detail page, including the editor content body. */
 public record ProjectDetailResponse(
         Long id,
+        Long groupId,
+        String part,
         String title,
         String summary,
         String content,
@@ -17,6 +19,8 @@ public record ProjectDetailResponse(
     public static ProjectDetailResponse from(Project p) {
         return new ProjectDetailResponse(
                 p.getId(),
+                p.getGroupId(),
+                p.getPart(),
                 p.getTitle(),
                 p.getSummary(),
                 p.getContent(),
